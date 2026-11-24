@@ -1,0 +1,6 @@
+resource_name,resource_type,subscription,resource_group,region,environment,owner,purpose,access_or_network_notes,monitoring,lifecycle_status,last_reviewed
+placement-app-prod,Azure App Service,TBD,StudentPlacement-RG,TBD,Production,Application team,Host portal web app/API,HTTPS; network access design TBD,Azure Monitor,Planned,
+placement-storage-prod,Storage account,TBD,StudentPlacement-RG,TBD,Production,Application team,Store resumes and documents,Private access preferred; configure data RBAC,Azure Monitor / diagnostics as required,Planned,
+placement-sql-prod,Azure SQL Database,TBD,StudentPlacement-RG,TBD,Production,Database owner,Store structured placement data,Private connectivity preferred; database permissions required,Azure Monitor / diagnostics as required,Planned,
+placement-vnet-prod,Virtual Network,TBD,StudentPlacement-RG,TBD,Production,Cloud team,Private network connectivity,Subnets and NSGs to be designed for supported resources,Azure Monitor,Planned,
+placement-logs-prod,Log Analytics workspace,TBD,StudentPlacement-RG,TBD,Production,Operations team,Central log analysis,Retention and access controls to be configured,Log Analytics,Planned,
