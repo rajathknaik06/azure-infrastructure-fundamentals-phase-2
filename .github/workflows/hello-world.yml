@@ -1,26 +1,52 @@
 
-name: My First GitHub Actions Workflow
+name: Azure Project CI Workflow
 
-# Run this workflow when code is pushed to main
 on:
   push:
     branches:
       - main
 
-  # Also allow manual execution
   workflow_dispatch:
 
 jobs:
-  first-job:
-    name: Run My First Job
+  project-check:
+    name: Check Azure Project
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print welcome message
-        run: echo "Hello! My first GitHub Actions workflow is running."
+      # Step 1: Download repository files
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Print project name
-        run: echo "Azure Infrastructure Fundamentals - Phase 2"
+      # Step 2: Display project name
+      - name: Display project information
+        run: |
+          echo "Azure Infrastructure Fundamentals"
+          echo "Phase 2 - Weeks 1 to 8"
 
-      - name: Print completion message
-        run: echo "GitHub Actions workflow completed successfully!"
+      # Step 3: Display learning topics
+      - name: Display completed topics
+        run: |
+          echo "Week 1 - Azure Cloud Basics"
+          echo "Week 2 - Virtual Machines"
+          echo "Week 3 - Azure Storage"
+          echo "Week 4 - Networking"
+          echo "Week 5 - Network Security"
+          echo "Week 6 - Identity and Permissions"
+          echo "Week 7 - Monitoring and Cost Control"
+          echo "Week 8 - Mini Project and Revision"
+
+      # Step 4: Check README file
+      - name: Verify README
+        run: |
+          if [ -f README.md ]; then
+            echo "README file exists"
+          else
+            echo "README file is missing"
+            exit 1
+          fi
+
+      # Step 5: Display success message
+      - name: Workflow completed
+        run: echo "Azure project validation completed!"
+
