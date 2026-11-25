@@ -1,0 +1,26 @@
+
+name: My First GitHub Actions Workflow
+
+# Run this workflow when code is pushed to main
+on:
+  push:
+    branches:
+      - main
+
+  # Also allow manual execution
+  workflow_dispatch:
+
+jobs:
+  first-job:
+    name: Run My First Job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print welcome message
+        run: echo "Hello! My first GitHub Actions workflow is running."
+
+      - name: Print project name
+        run: echo "Azure Infrastructure Fundamentals - Phase 2"
+
+      - name: Print completion message
+        run: echo "GitHub Actions workflow completed successfully!"
