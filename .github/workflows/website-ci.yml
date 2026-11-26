@@ -1,0 +1,56 @@
+
+name: Website Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-website:
+    name: Validate Website Files
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Download repository files
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # Step 3: Check required website files
+      - name: Check website files
+        run: |
+          test -f website/index.html
+          test -f website/style.css
+          test -f website/script.js
+          echo "All required website files exist."
+
+      # Step 4: Validate HTML
+      - name: Validate HTML
+        run: npx --yes html-validate@10 website/index.html
+
+      # Step 5: Check JavaScript syntax
+      - name: Validate JavaScript
+        run: node --check website/script.js
+
+      # Step 6: Check website formatting and file parsing
+      - name: Check CSS and website formatting
+        run: npx --yes prettier@3 --check website/index.html website/style.css website/script.js
+
+      # Step 7: Display success message
+      - name: CI completed
+        run: echo "Website validation completed successfully!"
