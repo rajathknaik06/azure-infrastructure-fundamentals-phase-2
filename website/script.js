@@ -1,4 +1,3 @@
-
 const registerButton = document.getElementById("registerButton");
 const message = document.getElementById("message");
 
